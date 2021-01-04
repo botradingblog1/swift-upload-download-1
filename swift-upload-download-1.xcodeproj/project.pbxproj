@@ -15,10 +15,9 @@
 		BE1EF45725A1E88900A0207D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1EF45525A1E88900A0207D /* LaunchScreen.storyboard */; };
 		BE1EF46225A1E8D700A0207D /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EF46125A1E8D700A0207D /* DownloadTask.swift */; };
 		BE1EF46525A1E90800A0207D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1EF46425A1E90800A0207D /* UploadTask.swift */; };
-		BE2FA3EF25A1F895005FFDF3 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2FA3EE25A1F895005FFDF3 /* Gist.swift */; };
-		BE2FA3F225A1F8C5005FFDF3 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2FA3F125A1F8C5005FFDF3 /* Content.swift */; };
 		BE2FA3F525A1F8EC005FFDF3 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2FA3F425A1F8EC005FFDF3 /* DownloadService.swift */; };
 		BE2FA3F825A1F914005FFDF3 /* UploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2FA3F725A1F914005FFDF3 /* UploadService.swift */; };
+		BEAD883425A31B73007AB9A1 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD883325A31B73007AB9A1 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +31,9 @@
 		BE1EF45825A1E88900A0207D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1EF46125A1E8D700A0207D /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		BE1EF46425A1E90800A0207D /* UploadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
-		BE2FA3EE25A1F895005FFDF3 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
-		BE2FA3F125A1F8C5005FFDF3 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		BE2FA3F425A1F8EC005FFDF3 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		BE2FA3F725A1F914005FFDF3 /* UploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadService.swift; sourceTree = "<group>"; };
+		BEAD883325A31B73007AB9A1 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +93,7 @@
 		BE1EF46025A1E8BA00A0207D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BE2FA3EE25A1F895005FFDF3 /* Gist.swift */,
-				BE2FA3F125A1F8C5005FFDF3 /* Content.swift */,
+				BEAD883325A31B73007AB9A1 /* File.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,8 +171,7 @@
 				BE1EF46525A1E90800A0207D /* UploadTask.swift in Sources */,
 				BE2FA3F525A1F8EC005FFDF3 /* DownloadService.swift in Sources */,
 				BE1EF46225A1E8D700A0207D /* DownloadTask.swift in Sources */,
-				BE2FA3F225A1F8C5005FFDF3 /* Content.swift in Sources */,
-				BE2FA3EF25A1F895005FFDF3 /* Gist.swift in Sources */,
+				BEAD883425A31B73007AB9A1 /* File.swift in Sources */,
 				BE1EF44F25A1E88800A0207D /* ViewController.swift in Sources */,
 				BE1EF44B25A1E88800A0207D /* AppDelegate.swift in Sources */,
 				BE1EF44D25A1E88800A0207D /* SceneDelegate.swift in Sources */,

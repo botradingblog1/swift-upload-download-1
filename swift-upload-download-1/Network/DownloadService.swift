@@ -10,8 +10,8 @@ import Foundation
 class DownloadService {
   var downloadSession: URLSession!
   
-    func start(_ url: String) {
-        let downloadTask = DownloadTask(url: url)
+    func start(file: File) {
+        let downloadTask = DownloadTask(file: file)
 
         // Create request
         let request = NSMutableURLRequest(url: downloadTask.url!)
@@ -20,6 +20,7 @@ class DownloadService {
         // Create download task
         downloadTask.task = downloadSession.downloadTask(with: request as URLRequest)
 
+        // Start download
         downloadTask.task?.resume()
         downloadTask.inProgress = true
     }

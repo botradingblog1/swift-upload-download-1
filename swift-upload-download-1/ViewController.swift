@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var file: File? = nil;
     
     // Get documents directory
     let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
     let downloadService = DownloadService()
     lazy var downloadSession: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier: "\(Bundle.main.bundleIdentifier!).download")
-        // download can be scheduled by system for optimal performance
+        // Download can be scheduled by system for optimal performance
         //configuration.isDiscretionary = false
         return URLSession(configuration: configuration, delegate: self, delegateQueue: .main)
     }()
@@ -39,15 +40,25 @@ class ViewController: UIViewController {
         uploadService.uploadSession = uploadSession
     }
 
-    
+    //
+    // MARK: - IBAction implementation
+    //
     @IBAction func onUploadClicked(_ sender: Any) {
-        let content = Content(content: "example content")
-        let gist = Gist(content: content)
-        uploadService.start(gist: gist, url: "https://api.github.com/gists");
+        self.output.text = ""
+
+        let file = File(link: "https://file.io",data: "text=this is the file content");
+        uploadService.start(file: file)
     }
     
     @IBAction func onDownloadClicked(_ sender: Any) {  
-        downloadService.start("https://api.github.com/gists/396a56e2e4f0330b9fd1d69ace8fb180")
+        self.output.text = ""
+        
+        guard self.file != nil else {
+            output.text = "File is nil. Upload a file first"
+            return
+        }
+        
+        downloadService.start(file: file!)
     }
     
     @IBOutlet weak var output: UILabel!
@@ -79,8 +90,6 @@ extension ViewController: URLSessionDelegate {
     }
 }
 
-
-
 //
 // MARK: - URL Session Download Delegate
 //
@@ -108,15 +117,14 @@ extension ViewController: URLSessionDownloadDelegate {
       print("Error copying file to disk: \(error.localizedDescription)")
     }
     
-    // todo: UI updates
-    self.output.text = "download complete"
-    
     do {
         let text = try String(contentsOf: targetPath, encoding: .utf8)
         print(text)
+        self.output.text = "File download complete. File content:\n"+text
     }
-    catch {/* error handling here */}
-
+    catch {
+        print("Error reading file")
+    }
   }
 }
 
@@ -143,10 +151,21 @@ extension ViewController: URLSessionDataDelegate {
     // Data received
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         print("didReceive data")
+        
+        // Convert to JSON
+        do {
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
+            self.file = File(success: jsonResult!["success"] as! Bool, key: jsonResult!["key"] as! String, link: jsonResult!["link"] as! String, expiry: jsonResult!["expiry"] as! String)
+        }
+        catch {
+            print("Error converting server response to json")
+        }
+        
+        // Print to UI
         if let responseText = String(data: data, encoding: .utf8) {
-            print("\nServer's response text")
             print(responseText)
-            self.output.text = responseText
+            self.output.text = "Upload server response:\n"+responseText
+            
         }
     }
 }

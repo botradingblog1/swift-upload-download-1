@@ -8,11 +8,11 @@
 import Foundation
 
 class UploadTask {
-  var gist: Gist
+  var file: File
   var inProgress = false
   var task: URLSessionUploadTask?
 
-  init(gist: Gist) {
-    self.gist = gist
+    init(file: File) {
+    self.file = file
   }
 }

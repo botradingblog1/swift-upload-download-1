@@ -8,13 +8,15 @@
 import Foundation
 
 class DownloadTask {
+  var file: File
   var url: URL?
   var inProgress = false
   var resumeData: Data?
   var task: URLSessionDownloadTask?
 
-  init(url: String) {
-    self.url = URL(string: url)
+  init(file: File) {
+    self.file = file
+    self.url = URL(string: file.link)
   }
 }
 

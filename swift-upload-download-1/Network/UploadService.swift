@@ -10,27 +10,22 @@ import Foundation
 class UploadService {
   var uploadSession: URLSession!
     
-    func start(gist: Gist, url: String) {
-        let uploadTask = UploadTask(gist: gist)
-        
-        // Workaround to handle issue that Gist requires 'public' property, which is a keyword in swift
-        /* guard let uploadData = try? JSONEncoder().encode(gist) else {
-            return
-        }*/
-        let uploadData =  Data("{\"public\":true,\"files\":{\"curltest2\":{\"content\":\"this is the content from ios\"}}}".utf8)
+    func start(file: File) {
+        let uploadTask = UploadTask(file: file)
+        let uploadData =  Data(file.data.utf8)
 
         // Create request
-        let urlObj = URL(string: url)!;
-        
-        var request = URLRequest(url: urlObj)
+        let url = URL(string: file.link)!;
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("bearer d7dbcb226b248d33fb7a9de4394a3e9be729decb", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        // Set headers if required, e.g.
+        //request.setValue("application/json", forHTTPHeaderField: "Accept")
     
         // Create upload task
         uploadTask.task = uploadSession.uploadTask(with: request, from: uploadData)
 
+        // Start upload
         uploadTask.task?.resume()
         uploadTask.inProgress = true
         
